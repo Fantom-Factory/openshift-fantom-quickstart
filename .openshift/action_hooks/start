@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# fail fast - see http://ss64.com/bash/set.html
+set -e
+
+# debug mode on!
+#set -x
+
+source $OPENSHIFT_CARTRIDGE_SDK_BASH
+
+cd $OPENSHIFT_REPO_DIR
+
+# read launch script removing any new line chars
+FAN_CMD=$(<runFantom.txt)
+FAN_CMD="${FAN_CMD//[$'\r\n']}"
+
+export FAN_HOME=$OPENSHIFT_DATA_DIR/.fantom
+export PATH=$FAN_HOME/bin:$PATH
+
+echo "-----> Launching: $FAN_CMD ${OPENSHIFT_DIY_PORT} ${OPENSHIFT_DIY_IP}"
+nohup $FAN_CMD ${OPENSHIFT_DIY_PORT} ${OPENSHIFT_DIY_IP} &
