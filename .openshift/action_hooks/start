@@ -11,7 +11,7 @@ source $OPENSHIFT_CARTRIDGE_SDK_BASH
 cd $OPENSHIFT_REPO_DIR
 
 # read launch script removing any new line chars
-FAN_CMD=$(<runFantom.txt)
+FAN_CMD=$(<openShiftCmd.txt)
 FAN_CMD="${FAN_CMD//[$'\r\n']}"
 
 export FAN_HOME=$OPENSHIFT_DATA_DIR/.fantom

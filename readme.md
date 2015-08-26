@@ -7,7 +7,7 @@
 
 ## Overview
 
-This is a simple [Fantom](http://fantom.org/) [BedSheet]`http://pods.fantomfactory.org/pods/afBedsheet/` web application for OpenShift.
+This is a simple [Fantom](http://fantom.org/) [BedSheet](http://pods.fantomfactory.org/pods/afBedsheet/) web application for OpenShift.
 
 It is designed as a template application to help bootstrap your own web applications.
 

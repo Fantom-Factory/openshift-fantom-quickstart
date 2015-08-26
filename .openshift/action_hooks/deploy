@@ -67,9 +67,9 @@ if [ "${PIPESTATUS[*]}" != "0 0" ]; then
 	exit 1
 fi
 
-echo "-----> Creating runFantom.txt ..."
-fan .openshift/action_hooks/CreateLaunchFile.fan build.fan runFantom.txt 2>&1 | sed -u "s/^/       /"
+echo "-----> Creating openShiftCmd.txt ..."
+fan .openshift/action_hooks/CreateCmdFile.fan build.fan openShiftCmd.txt 2>&1 | sed -u "s/^/       /"
 if [ "${PIPESTATUS[*]}" != "0 0" ]; then
-	echo " !     Failed to create runFantom.txt"
+	echo " !     Failed to create openShiftCmd.txt"
 	exit 1
 fi

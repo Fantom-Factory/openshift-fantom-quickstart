@@ -1,5 +1,5 @@
 
-class CreateLaunchFile {
+class CreateCmdFile {
 	
 	static Void main(Str[] args) {
 		scriptFileName	:= args[0]
