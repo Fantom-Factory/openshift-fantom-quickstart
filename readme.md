@@ -58,7 +58,7 @@ http://quickstart-<domain>.rhcloud.com/index.html
 
 Congratulations!
 
-Next I would reccomend reading the manual setup below, to more fully understand what's just happened!
+Next I reccomend reading the manual steps below, to more fully understand what's just happened!
 
 
 
