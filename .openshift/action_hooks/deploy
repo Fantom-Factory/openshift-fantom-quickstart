@@ -59,6 +59,7 @@ if [ "${PIPESTATUS[*]}" != "0 0" ]; then
 	echo " !     Failed to pre-compile app"
 	exit 1
 fi
+echo ""
 
 echo "-----> Calling Build Target: compile..."
 fan build.fan compile 2>&1 | sed -u "s/^/       /"
@@ -66,6 +67,7 @@ if [ "${PIPESTATUS[*]}" != "0 0" ]; then
 	echo " !     Failed to build app"
 	exit 1
 fi
+echo ""
 
 echo "-----> Creating openShiftCmd.txt ..."
 fan .openshift/action_hooks/CreateCmdFile.fan build.fan openShiftCmd.txt 2>&1 | sed -u "s/^/       /"
@@ -73,3 +75,4 @@ if [ "${PIPESTATUS[*]}" != "0 0" ]; then
 	echo " !     Failed to create openShiftCmd.txt"
 	exit 1
 fi
+echo ""

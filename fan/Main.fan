@@ -3,8 +3,8 @@ using afBedSheet
 
 class Main {
     Int main(Str[] args) {
-        BedSheetBuilder(AppModule#.qname)
-        	.setIpAddress(IpAddr(args[1]))
-        	.startWisp(args[0].toInt)
+    	port	:= args[0].toInt
+    	ipAddr	:= IpAddr(args[1])
+        return BedSheetBuilder(AppModule#.qname).setIpAddress(ipAddr).startWisp(port)
     }
 }
