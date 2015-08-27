@@ -1,4 +1,4 @@
-#Fantom Web Application for OpenShift
+# Fantom Quickstart for OpenShift
 ---
 [![Written for: Fantom](http://img.shields.io/badge/written%20for-Fantom-lightgray.svg)](http://fantom.org/)
 ![Licence: ISC](http://img.shields.io/badge/licence-ISC-blue.svg)
@@ -15,11 +15,11 @@ The quickstart application serves static files from the `html/` directory.
 
 
 
-## Fantom Quickstart for OpenShift
+## Quickstart
 
 
 
-### 1. Create the quickstart application
+### 1. Create a DIY application
 
 Assuming you've installed the [OpenShift client tools][openShiftClientTools] and run [setup][openShiftClientSetup], create a fresh OpenShift application with the DIY cartridge.
 
