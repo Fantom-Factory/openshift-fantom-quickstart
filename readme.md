@@ -11,23 +11,19 @@ Use it as a template to help bootstrap your own [Fantom][fantom] web application
 
 The quickstart application serves static files from the `html/` directory.
 
+Contents:
+
 [TOC]
 
 
 
-## Quickstart
+## Quickstart - One-liner
 
-
-
-### 1. Create a DIY application
-
-Assuming you've installed the [OpenShift client tools][openShiftClientTools] and run [setup][openShiftClientSetup], create a fresh OpenShift application with the DIY cartridge.
-
-This example will create an application called `quickstart`:
+Assuming you've installed the [OpenShift client tools][openShiftClientTools] and run [setup][openShiftClientSetup], you can create and deploy to live, the quickstart example in one line:
 
 ```
 #!bash
-C:\> rhc app create quickstart diy-0.1
+C:\> rhc create-app quickstart diy-0.1 --from-code https://bitbucket.org/AlienFactory/openshift-fantom-quickstart.git
 
 Application Options
 -------------------
@@ -38,16 +34,9 @@ Scaling:    no
 
 Creating application 'quickstart' ... done
 
-  Disclaimer: This is an experimental cartridge that provides a way to try unsupported languages, frameworks, and middleware on OpenShift.
-
 Waiting for your DNS name to be available ... done
 
 Cloning into 'quickstart'...
-remote: Counting objects: 25, done.
-remote: Compressing objects: 100% (20/20), done.
-remote: Total 25 (delta 1), reused 25 (delta 1)
-Receiving objects: 100% (25/25), 19.34 KiB | 6 KiB/s, done.
-Resolving deltas: 100% (1/1), done.
 
 Your application 'quickstart' is now available.
 
@@ -57,6 +46,32 @@ Your application 'quickstart' is now available.
   Cloned to:  C:/quickstart
 
 Run 'rhc show-app quickstart' for more details about your app.
+```
+
+You should now be able to view your application on a public URL:
+
+```
+http://quickstart-<domain>.rhcloud.com/index.html
+```
+
+![Quickstart in Action](https://bitbucket.org/repo/jByan7/images/852575017-quickstartInAction.png)
+
+Congratulations!
+
+Next I would reccomend reading the manual setup below, to more fully understand what's just happened!
+
+
+
+## Quickstart - Manual
+
+### 1. Create a DIY application
+
+Assuming you've installed the [OpenShift client tools][openShiftClientTools] and run [setup][openShiftClientSetup], create a fresh OpenShift application with the DIY cartridge.
+
+This example will create an application called `quickstart`:
+
+```
+C:\> rhc app create quickstart diy-0.1
 ```
 
 This creates a fresh application in the `quickstart` directory. We don't actually want any of the files as we're going to replace the entire application with our own. So delete everything, but make sure you keep the hidden `.git` directory - we need this!
