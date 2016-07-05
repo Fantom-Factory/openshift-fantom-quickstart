@@ -9,22 +9,31 @@ set -e
 # Standard OpenShift Environment Variables
 # https://docs.openshift.org/origin-m4/oo_user_guide.html#standard-openshift-environment-variables
 
+FAN_VERSION="1.0.68"
+FAN_URL="https://bitbucket.org/fantom/fan-1.0/downloads/fantom-$FAN_VERSION.zip"
+FAN_BUILD_TARGET="compile"
+
 echo ""
 cd $OPENSHIFT_REPO_DIR
 
 export FAN_HOME=$OPENSHIFT_DATA_DIR/.fantom
 export PATH=$FAN_HOME/bin:$PATH
 
+echo "-----> Fantom version      : $FAN_VERSION"
+echo "-----> Fantom download URL : $FAN_URL"
+echo "-----> Fantom build target : $FAN_BUILD_TARGET"
+echo ""
+
 
 
 # ---- Install Fantom ----
 
-if [ ! -d $FAN_HOME ]; then
+# Uncomment the line below to force an new Fantom installation
+# rm -rf $FAN_HOME
 
+if [ ! -d $FAN_HOME ]; then
 	# we need the FAN_VERSION because it's inside the the zip entires! 
-	# e.g. /fantom-1.0.67/bin/fan.exe
-	FAN_VERSION=1.0.67
-	FAN_URL=https://bitbucket.org/fantom/fan-1.0/downloads/fantom-$FAN_VERSION.zip
+	# e.g. /fantom-1.0.68/bin/fan.exe
 
 	echo -n "-----> Downloading $FAN_URL ... "
 	curl --silent --location $FAN_URL > fantom-$FAN_VERSION.zip
@@ -42,12 +51,12 @@ if [ ! -d $FAN_HOME ]; then
 
 	rm fantom-$FAN_VERSION.zip
 	echo "done"
-
-	# print fantom version details to prove it works
-	echo ""
-	fan -version 2>&1 | sed -u "s/^/       /"
-	echo ""
 fi
+
+# print fantom version details to prove it works
+echo ""
+fan -version 2>&1 | sed -u "s/^/       /"
+echo ""
 
 
 
@@ -61,8 +70,8 @@ if [ "${PIPESTATUS[*]}" != "0 0" ]; then
 fi
 echo ""
 
-echo "-----> Calling Build Target: compile..."
-fan build.fan compile 2>&1 | sed -u "s/^/       /"
+echo "-----> Calling Build Target: $FAN_BUILD_TARGET..."
+fan build.fan $FAN_BUILD_TARGET 2>&1 | sed -u "s/^/       /"
 if [ "${PIPESTATUS[*]}" != "0 0" ]; then
 	echo " !     Failed to build app"
 	exit 1

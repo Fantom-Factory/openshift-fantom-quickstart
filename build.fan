@@ -6,7 +6,7 @@ class Build : BuildPod {
 	new make() {
 		podName = "openShiftDemo"
 		summary = "Simple Fantom web application for OpenShift"
-		version = Version("1.0.0")
+		version = Version("1.1.0")
 
 		meta	= [
 			"proj.name"		: "OpenShift Demo",
@@ -22,10 +22,10 @@ class Build : BuildPod {
 			"inet       1.0", 
 			
 			// ---- Core ------------------------
-			"afIoc      2.0", 
+			"afIoc      3.0", 
 
 			// ---- Web -------------------------
-			"afBedSheet 1.4"
+			"afBedSheet 1.5"
 		]
 
 		srcDirs = [`fan/`]
@@ -38,7 +38,7 @@ class Build : BuildPod {
 			pod := Pod.find(depend.name, false)
 			return (pod == null) ? true : !depend.match(pod.version)
 		}
-		installFromRepo(pods, `http://pods.fantomfactory.org/fanr`)
+		installFromRepo(pods, `http://eggbox.fantomfactory.org/fanr`)
 	}
 
 	private Void installFromRepo(Str[] pods, Uri repo) {

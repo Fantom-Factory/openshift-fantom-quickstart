@@ -120,7 +120,7 @@ C:\quickstart> git commit -m "Git is!"
 
 ### 2. Build the Fantom pod
 
-When this application deploys, it downloads a fresh copy of Fantom (v1.0.67 at time of writing) and installs it in the directory `$OPENSHIFT_DATA_DIR/.fantom/`. 
+When this application deploys, it downloads a fresh copy of Fantom (v1.0.68 at time of writing) and installs it in the directory `$OPENSHIFT_DATA_DIR/.fantom/`. 
 
 The `.openshift/action_hooks/deploy` script then compiles your application from source by running the following 2 commands:
 
@@ -175,8 +175,8 @@ remote: Preparing build for deployment
 remote: Deployment id is bd2c4c17
 remote: Activating deployment
 remote:
-remote: -----> Downloading https://bitbucket.org/fantom/fan-1.0/downloads/fantom-1.0.67.zip ... done
-remote: -----> Installing Fantom 1.0.67... done
+remote: -----> Downloading https://bitbucket.org/fantom/fan-1.0/downloads/fantom-1.0.68.zip ... done
+remote: -----> Installing Fantom 1.0.68... done
 remote:
 remote:        Fantom Launcher
 remote:        Copyright (c) 2006-2013, Brian Frank and Andy Frank
@@ -189,22 +189,22 @@ remote:          java.vm.vendor:  Oracle Corporation
 remote:          java.vm.version: 24.85-b03
 remote:          java.home:       /usr/lib/jvm/java-1.7.0-openjdk-1.7.0.85/jre
 remote:          fan.platform:    linux-x86
-remote:          fan.version:     1.0.67
+remote:          fan.version:     1.0.68
 remote:          fan.env:         sys::BootEnv
 remote:          fan.home:        /var/lib/openshift/xxxx/app-root/data/.fantom
 remote:
 remote: -----> Calling Build Target: openShiftPreCompile...
 remote:
 remote:        Installing pods...
-remote:          > fanr install -y -r http://pods.fantomfactory.org/fanr "afIoc 2.0,afBedSheet 1.4"
+remote:          > fanr install -y -r http://eggbox.fantomfactory.org/fanr "afIoc 3.0, afBedSheet 1.5"
 remote:
-remote:        afBeanUtils   [install]  not-installed => 1.0.4
-remote:        afBedSheet    [install]  not-installed => 1.4.14
-remote:        afConcurrent  [install]  not-installed => 1.0.8
-remote:        afIoc         [install]  not-installed => 2.0.10
-remote:        afIocConfig   [install]  not-installed => 1.0.16
-remote:        afIocEnv      [install]  not-installed => 1.0.18
-remote:        afPlastic     [install]  not-installed => 1.0.18
+remote:        afBeanUtils   [install]  not-installed => 1.0.8
+remote:        afBedSheet    [install]  not-installed => 1.5.2
+remote:        afConcurrent  [install]  not-installed => 1.0.14
+remote:        afIoc         [install]  not-installed => 3.0.2
+remote:        afIocConfig   [install]  not-installed => 1.1.0
+remote:        afIocEnv      [install]  not-installed => 1.1.0
+remote:        afPlastic     [install]  not-installed => 1.1.2
 remote:
 remote:
 remote:        Downloading afConcurrent ... Complete
@@ -261,7 +261,7 @@ remote:    ___    __                 _____        _
 remote:   / _ |  / /_____  _____    / ___/__  ___/ /_________  __ __
 remote:  / _  | / // / -_|/ _  /===/ __// _ \/ _/ __/ _  / __|/ // /
 remote: /_/ |_|/_//_/\__|/_//_/   /_/   \_,_/__/\__/____/_/   \_, /
-remote:          Alien-Factory BedSheet v1.4.14, IoC v2.0.10 /___/
+remote:            Alien-Factory BedSheet v1.5.2, IoC v3.0.2 /___/
 remote:
 remote: IoC Registry built in 799ms and started up in 117ms
 remote:
@@ -300,7 +300,7 @@ You can install pods from a local `fanr` repository as long as it is checked int
 |  |...
 |-lib-fanr/
 |  `-afBedSheet/
-|     `-afBedSheet-1.4.x.pod
+|     `-afBedSheet-1.5.x.pod
 `-build.fan
 ```
 
@@ -326,7 +326,7 @@ This is useful when you're using pods developed by yourself, or ones that are no
 
 ### From a remote repository
 
-Most external pods are available publicly, usually from the [Fantom Repository][fantom-repo]. Here is a modified script that downloads and installs IoC from there:
+Most external pods are available publicly, usually from the [Eggbox Pod Repository][fantom-repo]. Here is a modified script that downloads and installs IoC from there:
 
 ```
 #!java
@@ -334,7 +334,7 @@ Most external pods are available publicly, usually from the [Fantom Repository][
 Void openShiftPreCompile() {
 
     // install pods from a remote fanr repository
-    fanr("install -y -r http://pods.fantomfactory.org/ afIoc")
+    fanr("install -y -r http://eggbox.fantomfactory.org/ afIoc")
 }
 
 private Void fanr(Str args) {
@@ -346,7 +346,7 @@ private Void fanr(Str args) {
 
 ### Example build script
 
-If *ALL* your dependant pods are available from the same repository (probably [Fantom Repository][fantom-repo]), then here is a useful script that installs everything for you:
+If *ALL* your dependant pods are available from the same repository (probably [Eggbox Pod Repository][fantom-repo]), then here is a useful script that installs everything for you:
 
 ```
 #!java
@@ -359,7 +359,7 @@ Void openShiftPreCompile() {
         pod := Pod.find(depend.name, false)
         return (pod == null) ? true : !depend.match(pod.version)
     }
-    installFromRepo(pods, "http://pods.fantomfactory.org/")
+    installFromRepo(pods, "http://eggbox.fantomfactory.org/")
 }
 
 private Void installFromRepo(Str[] pods, Str repo) {
@@ -425,9 +425,9 @@ Have fun!
 
 [fantom]: http://fantom.org/
 [openShift]: https://www.openshift.com/
-[afBedSheet]: http://pods.fantomfactory.org/pods/afBedSheet/
-[afIoc]: http://pods.fantomfactory.org/pods/afIoc/
-[fantom-repo]: http://pods.fantomfactory.org/
+[afBedSheet]: http://eggbox.fantomfactory.org/pods/afBedSheet/
+[afIoc]: http://eggbox.fantomfactory.org/pods/afIoc/
+[fantom-repo]: http://eggbox.fantomfactory.org/
 [openShiftClientTools]: https://developers.openshift.com/en/getting-started-overview.html
 [openShiftClientSetup]: https://developers.openshift.com/en/managing-client-tools.html#rhc-setup
 [openShiftFantomDownload]: https://bitbucket.org/AlienFactory/openshift-fantom-quickstart/downloads
