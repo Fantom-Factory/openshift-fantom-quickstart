@@ -58,7 +58,11 @@ http://quickstart-<domain>.rhcloud.com/index.html
 
 Congratulations!
 
-Next I reccomend reading the manual steps below, to more fully understand what's just happened!
+You may now git clone the OpenShift repository and develop the application.
+
+Or...
+
+Try the manual steps below for a better understanding!
 
 
 
